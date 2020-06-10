@@ -14,15 +14,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .cors().disable()
                 .authorizeRequests()
+                .antMatchers("/").permitAll()
                 .antMatchers("/usuarios/**").permitAll()
 //                .antMatchers("/swagger-ui.html").permitAll();
                 .anyRequest().permitAll()
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 ////                .antMatchers(HttpMethod.POST, "/cervejas").hasRole("ADMIN")
-                .and()
-                .csrf().disable();
 //                .formLogin().disable();
     }
 }
